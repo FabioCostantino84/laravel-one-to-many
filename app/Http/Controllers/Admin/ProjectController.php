@@ -86,12 +86,12 @@ class ProjectController extends Controller
             $val_data['thumb'] = $path;
         }
 
-        /* if (!Str::is($project->getOriginal('title'), $request->title)) {
+        if (!Str::is($project->getOriginal('title'), $request->title)) {
 
             // NB: shuld check if it exists
             // update the project slug
             $val_data['slug'] = $project->generateSlug($request->title);
-        } */
+        }
 
         $project->update($val_data);
         return to_route('admin.projects.index')->with('message', 'Project updated successfully');
