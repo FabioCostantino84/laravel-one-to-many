@@ -25,9 +25,17 @@ class StoreProjectRequest extends FormRequest
             'title' => ['required', 'min:5', 'max:50'],
             'description' => ['nullable'],
             'thumb' => ['nullable', 'image', 'max:500'],
-            'tech' => ['nullable'],
+            'type_id' => ['nullable', 'exists:types,id'],
             'github' => ['nullable'],
-            'link' => ['nullable']
+            'link' => ['nullable'],
+            
+
+            /* 'title' => 'required|unique:projects|bail|min:3|max:200',
+            'thumb' => 'nullable|image|max:300',
+            'description' => 'nullable|bail|min:3|max:500',
+            'type_id' => ['nullable', 'exists:types,id'],
+            'link_github' => 'nullable|bail|url:http,https',
+            'link_project_online' => 'nullable|bail|url:http,https', */
 
         ];
     }
