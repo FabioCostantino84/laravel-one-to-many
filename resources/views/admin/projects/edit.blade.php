@@ -25,7 +25,7 @@
                         <label for="title" class="form-label"><strong>Title</strong></label>
 
                         <input type="text" class="form-control" name="title" id="title"
-                            aria-describedby="helpTitle" value="{{ old('title') ? old('title') : $project->title }}">
+                            aria-describedby="helpTitle" value="{{ old('title', $project->title) }}"> {{-- o il vecchio o il nuovo --}}
 
                         @error('title')
                             <div class="text-danger">{{ $message }}</div>
