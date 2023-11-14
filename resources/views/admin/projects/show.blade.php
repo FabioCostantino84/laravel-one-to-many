@@ -14,19 +14,20 @@
             <div class="col-6">
                 <div class="card">
                     <div class="card-header">
-                        <h5>{{ $project->title }}</h5>
+                        <h5>Title: {{ $project->title }}</h5>
                     </div>
 
                     @if (str_contains($project->thumb, 'http'))
-                        <img class="img-fluid object-fit-cover" style="height: 300px" src="{{ $project->thumb }}"
+                        <img class="img-fluid object-fit-cover" style="height: 400px" src="{{ $project->thumb }}"
                             alt="{{ $project->title }}">
                     @else
-                        <img class="img-fluid object-fit-cover" style="height: 300px"
+                        <img class="img-fluid object-fit-cover" style="height: 400px"
                             src="{{ asset('storage/' . $project->thumb) }}">
                     @endif
 
                     <div class="card-body">
                         <p><strong>Description: </strong>{{ $project->description }}</p>
+                        <p><strong>Type used: </strong>{{ $project->type ? $project->type->type : 'nessuna tecnologia usata'  }}</p>
                         <p><strong>Technologies used: </strong>{{ $project->tech }}</p>
                         <p><i class="fa-brands fa-github"></i> {{ $project->github }}</p>
                         <p><i class="fa-solid fa-link"></i> {{ $project->link }}</p>

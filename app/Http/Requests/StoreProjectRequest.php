@@ -22,20 +22,13 @@ class StoreProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'min:5', 'max:50'],
-            'description' => ['nullable'],
+            /* 'title' => ['required', 'min:5', 'max:50'], */
+            'title' => ['required|unique:projects|bail|min:3|max:50'],
+            'description' => ['nullable', 'bail', 'min:3', 'max:500'],
             'thumb' => ['nullable', 'image', 'max:500'],
             'type_id' => ['nullable', 'exists:types,id'],
-            'github' => ['nullable'],
-            'link' => ['nullable'],
-            
-
-            /* 'title' => 'required|unique:projects|bail|min:3|max:200',
-            'thumb' => 'nullable|image|max:300',
-            'description' => 'nullable|bail|min:3|max:500',
-            'type_id' => ['nullable', 'exists:types,id'],
-            'link_github' => 'nullable|bail|url:http,https',
-            'link_project_online' => 'nullable|bail|url:http,https', */
+            'github' => ['nullable', 'bail', 'url:http,https'],
+            'link' => ['nullable', 'bail', 'url:http,https'],
 
         ];
     }

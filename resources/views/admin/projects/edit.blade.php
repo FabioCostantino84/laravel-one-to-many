@@ -48,6 +48,26 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="type_id" class="form-label">Types</label>
+                        <select class="form-select @error('type_id') is-invalid  @enderror" name="type_id" id="type_id">
+                            <option selected disabled>Select a type</option>
+                            <option value="">Uncategorized</option>
+
+                            @forelse ($types as $type)
+                                <option value="{{ $type->id }}" {{ $type->id == old('type_id') ? 'selected' : '' }}>
+                                    {{ $type->type }}</option>
+                            @empty
+                            @endforelse
+
+
+                        </select>
+                    </div>
+                    @error('type_id')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+
+                    {{-- tech --}}
+                    <div class="mb-3">
 
                         <label for="tech" class="form-label"><strong>Tech Used</strong></label>
 
@@ -113,7 +133,8 @@
 
                     <button type="submit" class="btn btn-success my-3"><i class="fa-regular fa-floppy-disk"></i>
                         Save</button>
-                    <a class="btn btn-primary" href="{{ route('admin.projects.index') }}"><i class="fa-solid fa-circle-chevron-left"></i>
+                    <a class="btn btn-primary" href="{{ route('admin.projects.index') }}"><i
+                            class="fa-solid fa-circle-chevron-left"></i>
                         Go back</a>
 
                 </form>

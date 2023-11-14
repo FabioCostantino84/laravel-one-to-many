@@ -73,7 +73,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $types = Type::all();
+        return view('admin.projects.edit', compact('project', 'types'));
+        
     }
 
     /**
@@ -93,6 +95,10 @@ class ProjectController extends Controller
             // NB: shuld check if it exists
             // update the project slug
             $val_data['slug'] = $project->generateSlug($request->title);
+        }
+
+        if ($request->has('type_id')) {
+            $val_data['type_id'] = $request->type_id;
         }
 
         $project->update($val_data);
